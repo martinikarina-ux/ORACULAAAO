@@ -1,0 +1,137 @@
+/* ======================================================
+   ORÁCULO DIGITAL — style.css
+   Estilo próprio (pedido pela atividade: "folhas de estilo
+   próprias"), pensado pra COMPLEMENTAR o Bootstrap, não
+   substituir. O Bootstrap cuida do grid/responsividade
+   e dos componentes de formulário; aqui a gente só troca
+   cores, fontes e adiciona o clima "techno-spiritual".
+   ====================================================== */
+
+:root {
+  --bg: #07060d;
+  --purple: #9b5cff;
+  --cyan: #4deeea;
+  --pink: #ff5cb8;
+  --card-bg: rgba(15, 12, 28, 0.75);
+  --text: #eae6ff;
+  --muted: #8b84a8;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Mono', 'Courier New', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---- Fundo: grade tecnológica (linhas finas roxas) ---- */
+.grid-overlay {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(155, 92, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(155, 92, 255, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ---- Fundo: campo de estrelas com leve deslocamento ---- */
+.stars {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+    radial-gradient(2px 2px at 70% 60%, #fff, transparent),
+    radial-gradient(1px 1px at 40% 80%, #fff, transparent),
+    radial-gradient(1px 1px at 85% 15%, #fff, transparent),
+    radial-gradient(2px 2px at 55% 45%, var(--cyan), transparent),
+    radial-gradient(1px 1px at 10% 65%, var(--pink), transparent),
+    radial-gradient(1px 1px at 90% 85%, #fff, transparent);
+  background-size: 600px 600px;
+  opacity: 0.6;
+  animation: drift 60s linear infinite;
+}
+@keyframes drift { from { background-position: 0 0; } to { background-position: -600px 600px; } }
+
+/* ---- Card principal: usado dentro do .container do Bootstrap ---- */
+.oracle-card {
+  position: relative;
+  z-index: 1;
+  max-width: 460px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border: 1px solid rgba(155, 92, 255, 0.35);
+  border-radius: 18px;
+  padding: 2.5rem 1.75rem;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 0 1px rgba(77, 238, 234, 0.06), 0 0 60px rgba(155, 92, 255, 0.18);
+}
+
+.oracle-symbol { font-size: 2.1rem; color: var(--cyan); text-shadow: 0 0 20px var(--cyan); margin-bottom: 0.4rem; }
+.oracle-title {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  font-weight: 900; font-size: 1.7rem; letter-spacing: 0.12em; margin: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--purple) 55%, var(--pink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.oracle-title span { font-weight: 500; color: var(--muted); background:none; -webkit-text-fill-color: var(--muted); }
+.oracle-subtitle { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.2em; margin-top: 0.3rem; }
+
+/* ---- Sobrescreve os inputs do Bootstrap pro tema escuro/neon ---- */
+.input-tech {
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(155,92,255,0.4) !important;
+  color: var(--text) !important;
+  font-family: inherit;
+}
+.input-tech::placeholder { color: var(--muted); }
+.input-tech:focus {
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 0 3px rgba(77,238,234,0.15) !important;
+  background: rgba(255,255,255,0.03) !important;
+  color: var(--text) !important;
+}
+.label-tech { color: var(--cyan); font-size: 0.7rem; letter-spacing: 0.13em; }
+
+/* ---- Sobrescreve o botão do Bootstrap pro gradiente neon ---- */
+.btn-oracle {
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  border: none; color: #fff; font-weight: 700; letter-spacing: 0.15em;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-oracle:hover, .btn-oracle:focus { color: #fff; box-shadow: 0 8px 30px rgba(155,92,255,0.45); }
+.btn-oracle:active { transform: translateY(1px); }
+
+.footnote { color: var(--muted); font-size: 0.7rem; }
+
+/* ---- Tela de resultado: linha "símbolo + label + valor" ---- */
+.result-row { display:flex; align-items:center; gap:1rem; padding: 0.6rem 0; }
+.result-symbol { font-size: 2.3rem; min-width: 58px; text-align:center; color: var(--cyan); text-shadow: 0 0 18px var(--cyan); }
+.result-label { font-size: 0.65rem; letter-spacing: 0.18em; color: var(--muted); }
+.result-value { font-size: 1.3rem; font-weight: 700; color: var(--text); }
+.result-divider { height:1px; background: linear-gradient(90deg, transparent, rgba(155,92,255,0.5), transparent); margin: 0.8rem 0; }
+
+/* ---- Linha extra de astros: elemento / modalidade / planeta regente ---- */
+.astro-extra { display: flex; justify-content: space-between; gap: 0.75rem; margin: 1.25rem 0 0.5rem; padding-top: 1rem; border-top: 1px solid rgba(155,92,255,0.25); }
+.astro-extra div { flex:1; text-align:center; }
+.astro-extra .val { font-size: 0.95rem; color: var(--cyan); font-weight:700; }
+.astro-extra .lbl { font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; margin-top:2px; }
+
+/* ---- Círculo com o emoji do arcano pessoal ---- */
+.arcano-visual {
+  width: 84px; height: 84px; min-width: 84px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,92,184,0.5);
+  display:flex; align-items:center; justify-content:center;
+  font-size: 2.4rem;
+  background: radial-gradient(circle, rgba(255,92,184,0.12), transparent 70%);
+  box-shadow: 0 0 30px rgba(255,92,184,0.25);
+}
+
+/* ---- Bloco de interpretação em texto corrido ---- */
+.interp-wrap { max-width: 640px; margin: 1.5rem auto 0; position: relative; z-index: 1; }
+.interp-card { background: var(--card-bg); border: 1px solid rgba(77,238,234,0.25); border-radius: 14px; padding: 1.5rem 1.6rem; margin-bottom: 1rem; }
+.interp-eyebrow { color: var(--pink); font-size: 0.68rem; letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+.interp-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text); }
+.interp-text { font-size: 0.88rem; line-height: 1.65; color: #cfc9e8; }
+.interp-text p { margin: 0 0 0.9rem 0; }
+.interp-text p:last-child { margin-bottom: 0; }
+.interp-source { font-size: 0.65rem; color: var(--muted); margin-top: 1.4rem; text-align:center; line-height:1.5; }
